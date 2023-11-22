@@ -1,0 +1,24 @@
+.contenedorDetalle {
+  display: flex;
+  flex-direction: column;
+  max-width: 62%;
+  min-width: 62%;
+}
+
+.contenedorItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  border: 3px solid var(--ion-color-primary);
+}
+.div-botones{
+  display: flex;
+  justify-content: space-between;
+}
+ion-input {
+  border: 2px solid var(--ion-color-secondary-contrast);
+  border-radius: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+}

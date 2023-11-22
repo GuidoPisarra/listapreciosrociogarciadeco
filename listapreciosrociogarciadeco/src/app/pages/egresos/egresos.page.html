@@ -1,0 +1,67 @@
+<app-header titulo="Egresos" verBackButton="true" verMenu="true"></app-header>
+
+<ion-content>
+  <div class="success-content" *ngIf="egresoCorrecto===true">
+    <ion-col>
+      <ion-row style="display:flex; justify-content: center;">
+        <ion-icon style="height: 40px; width: 40px;" src="../../../assets/icon/circle-check-regular.svg"></ion-icon>
+      </ion-row>
+      <ion-row style="display:flex; justify-content: center;">
+        <h1 class="success-message">Operación exitosa</h1>
+      </ion-row>
+      <ion-row style="display:flex; justify-content: center;">
+        <p class="success-submessage">Se ha guardado el egreso con éxito.</p>
+      </ion-row>
+    </ion-col>
+  </div>
+  <div class="egresoBox" *ngIf="egresoCorrecto===false">
+    <h2>Agregar Egreso</h2>
+    <ion-item style="border-radius: 15px 15px 0px 0px;">
+      <ion-label position="stacked">Descripcion</ion-label>
+      <ion-input placeholder="Ingrese la descripcion del egreso" [(ngModel)]="descripcionEgreso"></ion-input>
+    </ion-item>
+    <ion-label class="error" id="errorDescripcion" hidden="true">Este campo no puede estar vacío</ion-label>
+    <ion-item style="border-radius: 0px 0px 15px 15px;">
+      <ion-label position="stacked">Monto</ion-label>
+      <ion-input type="number" min="0" placeholder="Ingrese el monto del egreso" [(ngModel)]="montoEgreso"></ion-input>
+    </ion-item>
+    <ion-label class="error" id="errorMonto" hidden="true">Este campo no puede estar vacío</ion-label>
+
+  </div>
+
+  <div class="contenedor-botones" *ngIf="egresoCorrecto===false">
+    <div>
+      <button class="boton-circle" id="saveExpense" (click)="saveExpense()" style="margin-right: 95px !important;">
+        <img class='icono' src="../../../assets/icon/money-check-dollar-solid.svg"
+          style="width:30px!important;height:30px!important; " />
+      </button>
+      <p style="margin-left: 40px !important; margin-top: 3px !important">Guardar egreso</p>
+    </div>
+
+  </div>
+
+  <div class="egresoBox" *ngIf="egresoCorrecto===false">
+    <h2>Listado egresos</h2>
+    <ion-list>
+      <ion-item *ngFor="let item of listaEgresosVista; let index">
+        <ion-col>
+          <ion-row>
+            <ion-card-title style="margin-bottom: 8px;">Descripcion: {{ item.description | titlecase}}</ion-card-title>
+          </ion-row>
+          <ion-row>
+            <ion-label>Fecha: {{ item.date_expense | date:'dd'}}/{{ item.date_expense | date:'MM'}}/{{item.date_expense
+              | date: 'yyyy' }}</ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-label>Monto: {{ item.price | currency}}</ion-label>
+          </ion-row>
+        </ion-col>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+  </div>
+</ion-content>
+<app-footer></app-footer>

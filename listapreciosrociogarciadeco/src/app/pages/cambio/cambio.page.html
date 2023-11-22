@@ -1,0 +1,99 @@
+<app-header titulo="Cambio" verBackButton="true" verMenu="true"></app-header>
+<div class="custom-spinner" *ngIf="cargando">
+  <ion-spinner></ion-spinner>
+  <div class="spinner-text">Cargando...</div>
+</div>
+<!-- INICIO Scanner -->
+
+<body *ngIf="scanActive===true">
+
+  <div style="position: absolute; left: 0px; top: -2px; height: 1px; overflow: hidden; visibility: hidden; width: 1px;"
+    class="scanner-ui">
+    <span
+      style="position: absolute; font-size: 300px; width: 50%; height: 50%; margin: 0px; padding: 0px; font-family: Roboto, Arial, sans-serif;">BESbswy</span>
+  </div>
+  <div id="result">
+    {{result}}
+  </div>
+</body>
+
+<body *ngIf="scanActive===true" class="codeBarScanner">
+
+  <div style="position: absolute; left: 0px; top: -2px; height: 1px; overflow: hidden; visibility: hidden; width: 1px;"
+    class="scanner-ui">
+    <span
+      style="position: absolute; font-size: 300px; width: 50%; height: 50%; margin: 0px; padding: 0px; font-family: Roboto, Arial, sans-serif;">BESbswy</span>
+  </div>
+  <div id="result">
+    {{result}}
+  </div>
+</body>
+
+<!-- FIN scanner -->
+<div class="success-content" *ngIf="cambioCorrecto===true">
+  <ion-col>
+    <ion-row style="display:flex; justify-content: center;">
+      <ion-icon style="height: 40px; width: 40px;" src="../../../assets/icon/circle-check-regular.svg"></ion-icon>
+    </ion-row>
+    <ion-row style="display:flex; justify-content: center;">
+      <h1 class="success-message">Operación exitosa</h1>
+    </ion-row>
+    <ion-row style="display:flex; justify-content: center;">
+      <p class="success-submessage">Se realizó el cambio correctamente.</p>
+    </ion-row>
+  </ion-col>
+</div>
+<ion-content *ngIf="!cargando && !scanActive && cambioCorrecto===false" id="content" class="fondoResultado">
+
+  <div class="contenedor-item">
+    <div>
+      <h3>Producto vendido</h3>
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">Nombre</ion-label>
+          <ion-input placeholder="Nombre producto vendido" [(ngModel)]="nombreProductoOriginal"
+            readonly="true"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Precio</ion-label>
+          <ion-input type="number" id="inputPrecioOriginal" placeholder="Precio producto vendido"
+            [(ngModel)]="precioProductoOriginal" readonly="false" (change)="calcularDiferencia()"></ion-input>
+        </ion-item>
+      </ion-list>
+      <!--       <ion-button class="btn-busqueda" id="btnProductoVendido" (click)="buscarVendido()">Buscar</ion-button>
+ --> <ion-button class="btn-busqueda" id="btnProductoVendidoScanner"
+        (click)="buscarVendidoScanner()">Scannear</ion-button>
+    </div>
+
+    <div>
+      <h3>Producto nuevo</h3>
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">Nombre</ion-label>
+          <ion-input placeholder="Nombre producto a cambiar" [(ngModel)]="nombreProductoCambio"
+            readonly="true"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Precio</ion-label>
+          <ion-input type="number" id="inputPrecioCambio" placeholder="Precio producto vendido"
+            [(ngModel)]="precioProductoCambio" readonly="false" (change)="calcularDiferencia()"></ion-input>
+        </ion-item>
+      </ion-list>
+      <!--       <ion-button class="btn-busqueda">Buscar</ion-button>
+ --> <ion-button class="btn-busqueda" (click)="buscarNuevoScanner()">Scannear</ion-button>
+    </div>
+
+    <div class="seccion-cambio">
+      <div class="seccion-texto-cambio">
+        <label>Diferencia de precio: <span [ngClass]="{'debito':diferenciaPrecio<0, 'credito':diferenciaPrecio>=0}"
+            [(ngModel)]="diferenciaPrecio">{{diferenciaPrecio |
+            currency}}</span></label>
+      </div>
+      <ion-button class="btn-busqueda" (click)="realizarCambio()">Cambiar</ion-button>
+    </div>
+
+  </div>
+
+
+
+</ion-content>

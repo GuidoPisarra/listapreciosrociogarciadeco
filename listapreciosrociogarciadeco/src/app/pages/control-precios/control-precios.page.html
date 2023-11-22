@@ -1,0 +1,52 @@
+<app-header titulo="Control precios" verBackButton="true" verMenu="true"></app-header>
+
+<ion-content>
+  <div class="custom-spinner" *ngIf="cargando">
+    <ion-spinner></ion-spinner>
+    <div class="spinner-text">Cargando...</div>
+  </div>
+  <div class="success-content" *ngIf="edicionCorrecta===true && !cargando">
+    <ion-col>
+      <ion-row style="display:flex; justify-content: center;">
+        <ion-icon style="height: 40px; width: 40px;" src="../../../assets/icon/circle-check-regular.svg"></ion-icon>
+      </ion-row>
+      <ion-row style="display:flex; justify-content: center;">
+        <h1 class="success-message">Operación exitosa</h1>
+      </ion-row>
+      <ion-row style="display:flex; justify-content: center;">
+        <p class="success-submessage">Se han modificado los precios con éxito.</p>
+      </ion-row>
+    </ion-col>
+  </div>
+  <div class="precioBox" *ngIf="edicionCorrecta===false">
+    <ion-row style="display:flex; justify-content: center;">
+      <h1 class="success-message">Seleccionar Proveedor</h1>
+    </ion-row>
+    <ion-select aria-label="Seleccionar" interface="action-sheet" placeholder="Seleccionar..." class="selectSize"
+      (ionChange)="seleccionarProveedor($event)" class="btnYselect" *ngIf="!cargando" id="selectEnviar"
+      [disabled]="errorSinProveedor">
+      <ion-select-option *ngFor=" let proveedor of proveedores"
+        [value]="proveedor.id">{{proveedor.nombre}}</ion-select-option>
+    </ion-select>
+    <ion-item>
+      <ion-label position="stacked" style="margin-left: 30%; font-size: 25px;">Porcentaje</ion-label>
+      <ion-input type="number" min="0" placeholder="Ingrese el porcetaje" [(ngModel)]="porcentaje"
+        style="margin-left: 30%; font-size: 20px;"></ion-input>
+    </ion-item>
+    <ion-label class="error" id="errorPorcentaje" hidden="true">Este campo no puede estar vacío</ion-label>
+
+  </div>
+
+  <div class="contenedor-botones" *ngIf="edicionCorrecta===false">
+    <div>
+      <button id="savePorcentaje" class="boton-circle" (click)="savePorcentaje()">
+        <img class='icono' src="../../../assets/icon/floppy-disk-regular.svg"
+          style="width:30px!important;height:30px!important;" />
+      </button>
+      <ion-label style="margin-left: -3px;">
+        Modificar precios
+      </ion-label>
+    </div>
+  </div>
+</ion-content>
+<app-footer></app-footer>

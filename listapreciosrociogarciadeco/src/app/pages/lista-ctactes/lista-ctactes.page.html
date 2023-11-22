@@ -1,0 +1,49 @@
+<app-header titulo="Cuentas Corrientes" verBackButton="true" verMenu="true"></app-header>
+<ion-content>
+  <div class="custom-spinner" *ngIf="cargando">
+    <ion-spinner></ion-spinner>
+    <div class="spinner-text">Cargando...</div>
+  </div>
+  <div *ngIf="!cargando ">
+    <ion-searchbar [debounce]="300" (ionChange)="handleChange($event)" placeholder="Buscar"></ion-searchbar>
+    <ion-row>
+      <ion-item lines="null">
+        Cuentas
+      </ion-item>
+    </ion-row>
+    <ion-list [inset]="false" lines="full" class="contenedorItem" *ngIf="!cargando">
+      <ion-item *ngFor="let cliente of clientesResult.slice(0, cantidadInicialAMostrar); let index = index"
+        (click)="verCliente(cliente.id)">
+        <div class="contenedorDetalle" (click)="verCliente(cliente.id)">
+          <ion-label>
+            {{cliente.apellido | titlecase}} {{cliente.nombre | titlecase}}
+          </ion-label>
+          <ion-label>
+            DNI: {{cliente.dni}}
+          </ion-label>
+        </div>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+  <div *ngIf="clienteSeleccionado!=='' && !cargando ">
+    <ion-item *ngIf="clienteSeleccionado!==''" (click)="verDetalleCliente(clienteSeleccionado.id)">
+      <div class="contenedorDetalle"
+        [ngClass]="{ 'con-deuda': (clienteSeleccionado.deuda - clienteSeleccionado.pagos)>0, 'sin-deuda': (clienteSeleccionado.deuda - clienteSeleccionado.pagos)<=0 }">
+        <ion-label>
+          {{clienteSeleccionado.apellido | titlecase}} {{clienteSeleccionado.nombre | titlecase}}
+        </ion-label>
+        <ion-label>
+          DNI: {{clienteSeleccionado.dni}}
+        </ion-label>
+        <ion-label *ngIf="(clienteSeleccionado.deuda - clienteSeleccionado.pagos)>0">
+          Posee DEUDA
+        </ion-label>
+      </div>
+    </ion-item>
+  </div>
+
+</ion-content>
+<app-footer></app-footer>

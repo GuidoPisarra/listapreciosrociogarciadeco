@@ -1,0 +1,68 @@
+<app-header titulo="Detalle cuenta corriente" verBackButton="true" verMenu="true"></app-header>
+
+<div class="custom-spinner" *ngIf="cargando">
+  <ion-spinner></ion-spinner>
+  <div class="spinner-text">Cargando...</div>
+</div>
+
+<ion-content class="content" *ngIf="!cargando">
+  <ion-item class="contenedorItem" style="margin-top: 10px; margin-bottom: 15px;">
+    <div>
+      <ion-label>
+        {{cliente.apellido | titlecase}} {{cliente.nombre | titlecase}}
+      </ion-label>
+      <ion-label>
+        DNI: {{cliente.dni}}
+      </ion-label>
+    </div>
+  </ion-item>
+  <ion-item style="margin-top: 10px; margin-bottom: 15px;">
+    <ion-label *ngIf="errorMonto" style="color:red;">Debe ingresar un monto</ion-label>
+    <ion-input type="number" id="montoPago"></ion-input>
+    <ion-button (click)="registrarPago()" style="height: 100%;">Registrar pago</ion-button>
+  </ion-item>
+  <ion-item class="contenedorItem" style="margin-top: 10px; margin-bottom: 15px;">
+    <div>
+      <ion-label>
+        Entregas: {{ formatCurrency(entregas) }}
+      </ion-label>
+      <ion-label>
+        DEUDA: {{ formatCurrency(deuda) }}
+      </ion-label>
+      <ion-label>
+        DEUDA ACTUALIZADA:{{ formatCurrency(deudaActualizada) }}
+      </ion-label>
+    </div>
+  </ion-item>
+  <ion-list [inset]="false" lines="full" class="contenedorItem" *ngIf="!cargando">
+    <ion-item *ngFor="let movimiento of movimientos">
+      <div class="contenedorDetalle" *ngIf="movimiento.description!==undefined" style="margin-bottom: 10px;">
+        <ion-label>
+          <strong>Descripción:</strong>{{movimiento.description | titlecase}} - <strong>Cantidad:</strong>
+          {{movimiento.quantity}}
+        </ion-label>
+        <ion-label>
+          <strong>Fecha compra:</strong> {{movimiento.fecha | date: 'dd/MM/yyyy'}}
+        </ion-label>
+        <ion-label>
+          <strong>Precio original: $</strong> {{movimiento.precio_original }}
+        </ion-label>
+        <ion-label>
+          <strong>Precio actualizado:$</strong> {{movimiento.precio_actual }}
+        </ion-label>
+      </div>
+      <div class="contenedorDetalle pago" *ngIf="movimiento.description===undefined" style="margin-bottom: 10px;">
+        <ion-label>
+          <strong>Fecha pago:</strong> {{movimiento.fecha | date: 'dd/MM/yyyy'}}
+        </ion-label>
+        <ion-label>
+          <strong>Entrega: $</strong> {{movimiento.entrega}}
+        </ion-label>
+      </div>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>
+
+<app-footer></app-footer>

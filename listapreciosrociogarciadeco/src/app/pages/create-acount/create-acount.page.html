@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear cuenta</ion-title>
+    <ion-button (click)="back()" class="btnBack" slot="start">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="form-create">
+    <div class="group-label-input">
+      <ion-label>Nombre</ion-label>
+      <ion-input id="nameCreateAcount"></ion-input>
+    </div>
+    <div class="group-label-input">
+      <ion-label>E-mail</ion-label>
+      <ion-input id="emailCreateAcount"></ion-input>
+    </div>
+    <div class="group-label-input">
+      <ion-label>Contraseña</ion-label>
+      <ion-input id="passwordCreateAcount"></ion-input>
+    </div>
+    <div class="group-label-input">
+      <ion-label>Repetir contraseña</ion-label>
+      <ion-input id="passwordRepeatCreateAcount"></ion-input>
+    </div>
+    <div class="form-botones">
+      <ion-button (click)="crearUsuario()">Crear usuario</ion-button>
+    </div>
+  </div>
+</ion-content>

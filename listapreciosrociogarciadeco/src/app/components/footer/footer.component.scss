@@ -1,0 +1,21 @@
+#tab-button-tab2{
+  margin-top: -25px;
+  border-radius: 50%;
+  border: solid 2px var(--ion-color-primary);
+  background-color: var(--ion-color-primary-tint);
+  width: 4rem;
+  height: 4rem;
+  position: absolute;
+  box-shadow: 4px 10px 20px -6px black;
+
+}
+
+.scannIcon{
+  width: 2rem;
+  height: 2rem;
+
+}
+ion-tab-bar{
+  contain:layout;
+  --background: var(--ion-color-primary);
+}

@@ -1,0 +1,66 @@
+<app-header titulo="Agregar al stock" verBackButton="true" verMenu="true" (click)="volver($event)"></app-header>
+
+<ion-content>
+  <div class="success-content" *ngIf="stockCorrecto===true  && error === false">
+    <ion-col>
+      <ion-row style="display:flex; justify-content: center;">
+        <ion-icon style="height: 40px; width: 40px;" src="../../../assets/icon/circle-check-regular.svg"></ion-icon>
+      </ion-row>
+      <ion-row style="display:flex; justify-content: center;">
+        <h1 class="success-message">Operación exitosa</h1>
+      </ion-row>
+      <ion-row style="display:flex; justify-content: center;">
+        <p class="success-submessage">Se ha guardado el egreso con éxito.</p>
+      </ion-row>
+    </ion-col>
+  </div>
+  <div class="success-content" *ngIf="error===true">
+    <ion-col>
+      <ion-row style="display:flex; justify-content: center;">
+        <ion-icon style="height: 40px; width: 40px;" src="../../../assets/icon/xmark-solid.svg"></ion-icon>
+      </ion-row>
+      <ion-row style="display:flex; justify-content: center;">
+        <h1 class="success-message">Error</h1>
+      </ion-row>
+      <ion-row style="display:flex; justify-content: center;">
+        <p class="success-submessage">Ocurrió un error, por favor vuelva a ingresar a la página.</p>
+      </ion-row>
+    </ion-col>
+  </div>
+  <ion-list *ngIf="stockCorrecto===false && error === false">
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input placeholder="Ingrese el nombre" [(ngModel)]="nombre" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Precio</ion-label>
+      <ion-input type="number" min="0" placeholder="Ingrese el precio" [(ngModel)]="precio" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Stock actual</ion-label>
+      <ion-input type="number" min="0" placeholder="Ingrese la cantidad" [(ngModel)]="cantidad" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Agregar</ion-label>
+      <ion-input type="number" min="0" placeholder="Ingrese la cantidad" [(ngModel)]="agregar"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Talle</ion-label>
+      <ion-input placeholder="Ingrese el talle" [(ngModel)]="talle" disabled></ion-input>
+    </ion-item>
+
+
+  </ion-list>
+  <div class="contenedor-botones" *ngIf="stockCorrecto===false  && error === false"
+    style=" margin-top: 18px !important">
+    <div>
+      <button class="boton-circle" id="guardar" (click)="saveStock()"
+        style="margin-right: 95px !important; margin-left: 90px;">
+        <img class='icono' src="../../../assets/icon/floppy-disk-regular.svg"
+          style="width:30px!important;height:30px!important; " />
+      </button>
+      <p style="margin-left: 90px;">Guardar</p>
+    </div>
+
+  </div>
+</ion-content>

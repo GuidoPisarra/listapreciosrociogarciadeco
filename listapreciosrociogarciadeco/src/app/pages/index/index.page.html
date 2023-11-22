@@ -1,0 +1,37 @@
+<app-header titulo="Inicio" verBackButton='false' verMenu='true'></app-header>
+
+<ion-content>
+  <div class="custom-spinner" *ngIf="cargando">
+    <ion-spinner></ion-spinner>
+    <div class="spinner-text">Cargando...</div>
+  </div>
+  <ion-content>
+    <ion-grid>
+      <ion-row class="content">
+        <ion-col size="12" size-sm="12" size-md="4" size-lg="4" size-xl="4">
+          <div class="recuadro-menu">
+            <app-boton-icono [icono]="'../../../assets/icon/list-ul-solid.svg'" [ref]="'/lista-productos'"
+              [texto]="'Productos'"></app-boton-icono>
+            <app-boton-icono [icono]="'../../../assets/icon/plus-solid.svg'" [ref]="'/producto'"
+              [texto]="'Nuevo producto'"></app-boton-icono>
+            <app-boton-icono [icono]="'../../../assets/icon/rotate-solid.svg'" [ref]="'/cambio'"
+              [texto]="'Cambio'"></app-boton-icono>
+            <app-boton-icono [icono]="'../../../assets/icon/hand-holding-dollar-solid.svg'" [ref]="'/ventas'"
+              [texto]="'Ventas'" *ngIf="!usuario"></app-boton-icono>
+            <app-boton-icono [icono]="'../../../assets/icon/arrow-trend-down-solid.svg'" [ref]="'/lista-productos'"
+              [texto]="'Egresos'" *ngIf="!usuario"></app-boton-icono>
+            <app-boton-icono [icono]="'../../../assets/icon/dollar-sign-solid.svg'" [ref]="'/control-precios'"
+              [texto]="'Precios'" *ngIf="!usuario"></app-boton-icono>
+            <app-boton-icono [icono]="'../../../assets/icon/dolly-solid.svg'" [ref]="'/stock'"
+              [texto]="'Stock'"></app-boton-icono>
+            <app-boton-icono [icono]="'../../../assets/icon/qrcode-solid.svg'" [ref]="'/codigos-qr'"
+              [texto]="'Codigos Qr'"></app-boton-icono>
+            <app-boton-icono [icono]="'../../../assets/icon/chart-line-solid.svg'" [ref]="'/balance'"
+              [texto]="'Balance'" *ngIf="!usuario"></app-boton-icono>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</ion-content>
+<app-footer></app-footer>

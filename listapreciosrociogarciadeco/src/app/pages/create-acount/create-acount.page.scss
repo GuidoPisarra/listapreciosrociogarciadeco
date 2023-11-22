@@ -1,0 +1,37 @@
+.content {
+  display: flex;
+  justify-content: center;
+}
+
+.form-create {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 35%;
+  margin-top: 8%;
+  width: 40%;
+  color: var(--ion-color-primary-shade);
+}
+
+.group-label-input {
+  margin-bottom: 4%;
+}
+
+ion-input {
+  border: 2px solid var(--ion-color-primary-shade);
+  border-radius: 20px;
+  width: 100%;
+}
+
+.form-botones {
+  display: flex;
+  justify-content: center;
+}
+
+ion-button {
+  max-width: 30%;
+}
+
+.crear-cuenta {
+  margin-left: 85%;
+}

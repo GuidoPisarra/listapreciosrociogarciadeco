@@ -1,0 +1,58 @@
+<app-header titulo="Codigos QR" verBackButton="true" verMenu="true"></app-header>
+<ion-content>
+  <div class="contenedorBtnSearch">
+    <ion-button (click)="printContent()" style="margin-top: 10px; margin-left: 15px; margin-right: 15px;">
+      <ion-icon src="../../../assets/icon/print-solid.svg"></ion-icon>
+      <ion-label style="margin-left: 5px;">
+        Imprimir
+      </ion-label>
+    </ion-button>
+    <div class="divTamanio">
+      <label class="labelTamanioQr">Tamaño de Qr</label>
+      <ion-select aria-label="Seleccionar" interface="action-sheet" placeholder="Seleccionar..."
+        [(ngModel)]="selectedSize" class="selectSize" (ionChange)="tamanioSeleccionado($event)">
+        <ion-select-option value="40px">Pequeño</ion-select-option>
+        <ion-select-option value="80px">Mediano</ion-select-option>
+        <ion-select-option value="120px">Grande</ion-select-option>
+      </ion-select>
+
+
+    </div>
+
+    <ion-searchbar [debounce]="300" (ionChange)="handleChange($event)" placeholder="Buscar"
+      clearIcon="close"></ion-searchbar>
+    <ion-button (click)="clear()" style="margin-top: 10px;margin-right: 10px;">
+      <ion-icon src="../../../assets/icon/eraser-solid.svg"></ion-icon>
+      <ion-label style="margin-left: 5px;">
+        Limpiar Selección
+      </ion-label>
+    </ion-button>
+  </div>
+  <div class="custom-spinner" *ngIf="cargando">
+    <ion-spinner></ion-spinner>
+    <div class="spinner-text">Cargando...</div>
+  </div>
+  <div class="cardContainer">
+
+    <div class="center-div" *ngFor="let prod of results" #content>
+
+      <ion-card class="cardQr">
+        <ion-card-header style="display: flex; flex-direction: row;">
+          <ion-label style="font-size: larger; margin-right: 5px;">Seleccionar: </ion-label>
+          <ion-checkbox class="checkbox" (click)="seleccionarItemParaImpresion(prod.id, $event)"></ion-checkbox>
+        </ion-card-header>
+
+        <ngx-qrcode cssClass="qrTamanio" [elementType]="tipoElemento" [value]="prod.code" id="qr{{prod.id}}">
+        </ngx-qrcode>
+        <ion-item class="itemQr" lines="none">
+          <label class="description">Descripcion: {{prod.description}}</label>
+        </ion-item>
+        <ion-item class="itemQr" lines="none">
+          <ion-label>Talle: {{prod.size}}</ion-label>
+        </ion-item>
+      </ion-card>
+
+    </div>
+  </div>
+</ion-content>
+<app-footer></app-footer>

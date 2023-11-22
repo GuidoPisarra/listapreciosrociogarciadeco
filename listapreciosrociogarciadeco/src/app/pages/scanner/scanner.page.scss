@@ -1,0 +1,118 @@
+body, span{
+
+  height: 30%;
+  width: 50%;
+  border: 2px solid var(  --ion-color-success-tint);
+  border-radius: 20px;
+  margin-left: 24%;
+  margin-top: 30%;
+
+}
+.codeBarScanner{
+  height: 18%;
+  width: 80%;
+  border: 2px solid var(  --ion-color-success-tint);
+  border-radius: 20px;
+  margin-left: 9%;
+  margin-top: 92%;
+}
+
+
+
+ion-content, .fondoScanner{
+  --background: var(--ion-background-color, transparent);
+}
+
+.fondoResultado{
+  --background: var(--ion-background-color, --ion-color-primary-tint);
+}
+
+
+.cantidad-label-input{
+  display: inline-flex;
+  align-items: center;
+}
+
+.contenedor-botones {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+  cursor: pointer;
+
+}
+
+.boton-circle {
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  background-color: var(--ion-color-primary);
+  color: --ion-color-primary-shade;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 2px 0px rgb(0 0 0 / 14%),
+  0 3px 1px -2px rgb(0 0 0 / 12%),
+  0 1px 5px 0 rgb(0 0 0 / 20%);
+}
+
+.icono {
+    filter: invert(100%);
+}
+
+ion-icon {
+    font-size: 25px;
+}
+
+.success-content{
+  display: flex;
+  justify-content: center;
+  color: whitesmoke;
+}
+.icon-success {
+  font-size: 72px;
+  color: green;
+  text-align: center;
+  margin-top: 40px;
+  justify-self: center;
+}
+
+.success-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 24px;
+    color: whitesmoke;
+}
+
+.success-submessage {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+  color: --ion-color-primary-tint;
+    color: whitesmoke;
+}
+
+
+
+.cantProd{
+  border:  2px solid var(--ion-color-secondary);
+  border-radius: 25px;
+  text-align: center;
+  width: 50px !important;
+}
+
+
+.itemVenta{
+  display: flex;
+  flex-direction: row;
+  width: 110%;
+}
+
+.btnQuitar{
+  margin-left: 8%;
+  height: 30%;
+}
+.ionLabelProducto{
+  overflow: visible;
+}

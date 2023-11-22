@@ -1,0 +1,98 @@
+<app-header titulo="Ventas" verBackButton="true" verMenu="true"></app-header>
+<ion-content [fullscreen]="true">
+  <div class="custom-spinner" *ngIf="cargando">
+    <ion-spinner></ion-spinner>
+    <div class="spinner-text">Cargando...</div>
+  </div>
+  <h2 style="text-align: center;">Reporte de ventas</h2>
+  <div *ngFor="let item of listadoTotal; let i as index" class="itemSale" style="width: 100%;">
+    <ion-list class="cardVenta">
+      <div *ngIf=" item.id_producto_cambio">
+        <ion-item>
+          <ion-grid>
+            <ion-row class="fechaVenta">
+              <h5>Fecha: {{item.fecha_cambio}}</h5>
+            </ion-row>
+            <ion-row>
+              <h5>CAMBIO</h5>
+            </ion-row>
+            <ion-row>
+              <ion-col size="5" class="columna">
+                <p>Descripcion</p>
+              </ion-col>
+              <ion-col size="3" class="columna">
+                <p>Cantidad</p>
+              </ion-col>
+              <ion-col size="4" class="columna">
+                <p style="text-align: center; margin-left: 40px;">Subtotal</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="5" class="columnaDetalleDescripcion">
+                <p>{{ item.descripcion_cambio }}</p>
+              </ion-col>
+              <ion-col size="3" class="columnaDetalleCantidad">
+                <p>1</p>
+              </ion-col>
+              <ion-col size="4" class="columnaDetalleSubtotal">
+                <p>{{item.precio_producto_cambio | currency}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="5" class="columnaDetalleDescripcion">
+                <p>{{ item.descripcion_nuevo}}</p>
+              </ion-col>
+              <ion-col size="3" class="columnaDetalleCantidad">
+                <p>1</p>
+              </ion-col>
+              <ion-col size="4" class="columnaDetalleSubtotal">
+                <p>{{item.precio_producto_nuevo | currency}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="item !== undefined">
+              <h2>Diferencia: {{ item.precio_producto_cambio-item.precio_producto_nuevo | currency}}</h2>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </div>
+      <div *ngIf=" !item.id_producto_cambio">
+        <ion-item>
+          <ion-grid>
+            <ion-row class="fechaVenta">
+              <h5>Fecha: {{item[0].sale_product_date}}</h5>
+            </ion-row>
+            <ion-row>
+              <h5>Forma de pago: {{item[0].type_payment | titlecase}} </h5>
+            </ion-row>
+            <ion-row>
+              <ion-col size="5" class="columna">
+                <p>Descripcion</p>
+              </ion-col>
+              <ion-col size="3" class="columna">
+                <p>Cantidad</p>
+              </ion-col>
+              <ion-col size="4" class="columna">
+                <p style="text-align: center; margin-left: 40px;">Subtotal</p>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let detalle of item">
+              <ion-col size="5" class="columnaDetalleDescripcion">
+                <p>{{ detalle.description | titlecase}}</p>
+              </ion-col>
+              <ion-col size="3" class="columnaDetalleCantidad">
+                <p>{{detalle.quantity}}</p>
+              </ion-col>
+              <ion-col size="4" class="columnaDetalleSubtotal">
+                <p>{{detalle.amount | currency}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="item !== undefined">
+              <h2>Total: {{ item.total | currency}}</h2>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>
+<app-footer></app-footer>

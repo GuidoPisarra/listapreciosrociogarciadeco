@@ -1,0 +1,20 @@
+<ion-tab-bar slot="bottom">
+  <ion-tab-button tab="tab1" (click)="goTo('index')">
+    <ion-icon src="../../../assets/icon/house-solid.svg"></ion-icon>
+    <ion-label>Inicio</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button tab="tab2" id="tabSacanner" class="menu" (click)="goTo('scanner')">
+    <ion-icon class="scannIcon" src="../../../assets/icon/qrcodescan.svg"></ion-icon>
+  </ion-tab-button>
+
+  <ion-tab-button tab="tab3" (click)="goTo('ventas')" *ngIf="!usuario">
+    <ion-icon src="../../../assets/icon/hand-holding-dollar-solid.svg"></ion-icon>
+    <ion-label>Ventas</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button tab="tab3" (click)="goTo('lista-productos')" *ngIf="usuario">
+    <ion-icon src="../../../assets/icon/list-ul-solid.svg"></ion-icon>
+    <ion-label>Productos</ion-label>
+  </ion-tab-button>
+</ion-tab-bar>

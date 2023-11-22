@@ -1,0 +1,42 @@
+.contenedorDetalle{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.modificarCantidad{
+  display: flex;
+  justify-content: space-between;
+  width: 35%;
+}
+
+@media only screen and (min-width: 1024px) {
+.modificarCantidad {
+    display: flex;
+    justify-content: space-between;
+    width: 12%;
+  }
+}
+
+.inputCantidad{
+  max-width: 25%;
+}
+
+.content{
+  justify-content: center;
+  width: 100%;
+}
+
+.btnYselect{
+  margin-top: 25px;
+  margin-right: 10px;
+  margin-left: 15px;
+  width: 97%;
+}
+
+.error {
+  color: var(--ion-color-danger);
+  display: flex;
+  justify-content: center;
+}

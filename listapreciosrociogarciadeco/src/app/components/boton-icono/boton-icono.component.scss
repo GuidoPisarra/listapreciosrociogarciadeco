@@ -1,0 +1,65 @@
+.icono{
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.contenedor{
+  border-radius: 50px;
+  background-color: var(--ion-color-secondary);
+  display: flex;
+  justify-content: center;
+  min-height: 4rem;
+  min-width: 4rem;
+  max-height: 4rem;
+  max-width: 4rem;
+}
+ion-icon{
+  display: flex;
+  margin-top: 26%;
+  min-width: 3rem;
+  max-width: 3rem;
+  min-height: 2rem;
+  color: var(--ion-color-primary-contrast);
+}
+p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--ion-color-secondary);
+}
+
+.texto-icono{
+  display: flex;
+  overflow-wrap: break-word;
+  max-width: 2rem;
+  align-self: center;
+  justify-content: center;
+}
+
+.estiloNuevo {
+
+  /* Color de fondo del botón */
+  border: none;
+  /* Color del texto en el botón */
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+
+  /* Definición de las sombras */
+  box-shadow:
+    -10px -10px 30px 0 var(--ion-color-primary-tint), // Sombra superior izquierda
+    10px 10px 30px 0 #e9e9ffcd, // Sombra inferior derecha
+    inset -5px -5px 10px 0  var(--ion-color-primary-tint), // Sombra interior superior izquierda
+    inset 0px 0px 25px 0 var(--ion-color-primary-tint); // Sombra interior inferior derecha
+}
+
+/* .estiloNuevo:hover {
+   Puedes ajustar las sombras al hacer hover si lo deseas
+  box-shadow:
+    -5px -5px 15px 0 #FFFFFF,
+    5px 5px 15px 0 #AEAEC0,
+    inset -5px -5px 5px 0 #AEAEC0,
+    inset 5px 5px 15px 0 #FFFFFF;
+} */

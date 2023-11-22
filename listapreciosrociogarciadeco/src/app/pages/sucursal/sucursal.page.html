@@ -1,0 +1,45 @@
+<app-header titulo="Sucursal" verBackButton="true" verMenu="true"></app-header>
+
+<ion-content>
+  <div class="custom-spinner" *ngIf="cargando">
+    <ion-spinner></ion-spinner>
+    <div class="spinner-text">Cargando...</div>
+  </div>
+  <ion-button *ngIf="!cargando" style="margin-left: 3%;" (click)="nuevaSucursal()">Nueva Sucursal</ion-button>
+
+  <div class="divNueva" *ngIf="verNueva && !cargando" style="margin-left: 3%;  margin-right: 3%;">
+    <ion-label>Nombre <ion-label *ngIf="errorNombre" class="error">Este campo no puede estar
+        vacío</ion-label></ion-label>
+    <ion-input class="input" [(ngModel)]="nombre"></ion-input>
+    <ion-label>Domicilio
+      <ion-label *ngIf="errorDomicilio" class="error">Este campo no puede estar vacío.</ion-label>
+      <ion-label *ngIf="errorDomicilioIgual" class="error">Ya existe una sucursal con este domicilio.</ion-label>
+    </ion-label>
+    <ion-input class="input" [(ngModel)]="domicilio"></ion-input>
+    <ion-label>Telefono</ion-label>
+    <ion-input class="input" [(ngModel)]="telefono"></ion-input>
+    <ion-button (click)="cancelarNueva()">Cancelar</ion-button>
+    <ion-button (click)="guardarNueva()">Guardar</ion-button>
+  </div>
+
+
+
+  <ion-list lines="full" *ngIf="!cargando">
+    <ion-item style="margin-top: 3%; margin-left: 2%;  margin-right: 3%;">
+      <h3>Negocios</h3>
+    </ion-item>
+    <ion-item *ngFor="let negocio of listaNegocios" style="margin-bottom: 5px; margin-left: 2%; margin-right: 3%;">
+      <div style="width: 80%;">
+
+        <ion-label>{{negocio.nombre | titlecase}} <ion-label *ngIf="negocio.sucursal===0">(Casa
+            Central)</ion-label></ion-label>
+        <ion-label>Domicilio: {{negocio.domicilio}}</ion-label>
+        <ion-label>Telefono: {{negocio.telefono}}</ion-label>
+      </div>
+      <ion-button id="delete" (click)="eliminarNegocio(negocio.sucursal)" *ngIf="negocio.sucursal!==0">
+        <ion-icon class="edit" slot="icon-only" src="../../../assets/icon/trash-can-regular.svg"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<app-footer></app-footer>

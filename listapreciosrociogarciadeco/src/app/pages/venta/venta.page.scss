@@ -1,0 +1,24 @@
+ion-input {
+  border: 2px solid var(--ion-color-secondary-contrast);
+  border-radius: 20px;
+  width: 100%;
+}
+
+.inputOpcionPrecio{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.btnVender{
+  margin-top: 50px;
+  width: 100%;
+  min-height:3rem ;
+}
+
+.opciones{
+  display: flex;
+  justify-content: center;
+
+}

@@ -1,0 +1,80 @@
+<app-header titulo="Trasladar producto" verBackButton="true" verMenu="true"></app-header>
+
+<ion-content>
+  <div class="success-content" *ngIf="trasladoCorrecto===true ">
+    <ion-col>
+      <ion-row style="display:flex; justify-content: center;">
+        <ion-icon style="height: 40px; width: 40px;" src="../../../assets/icon/circle-check-regular.svg"></ion-icon>
+      </ion-row>
+      <ion-row style="display:flex; justify-content: center;">
+        <h1 class="success-message">Operación exitosa</h1>
+      </ion-row>
+      <ion-row style="display:flex; justify-content: center;">
+        <p class="success-submessage">Se trasladó el producto con éxito.</p>
+      </ion-row>
+    </ion-col>
+  </div>
+  <ion-grid *ngIf="!trasladoCorrecto">
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="5" size-lg="12" size-xl="12" class="content">
+        <div class="contenedorBtnSearch">
+          <!--           <ion-searchbar [debounce]="300" (ionChange)="handleChange($event)" placeholder="Buscar"></ion-searchbar>
+ -->
+          <ion-select aria-label="Seleccionar" interface="action-sheet" placeholder="Seleccionar..." class="selectSize"
+            (ionChange)="sucursalSeleccionada($event)" class="btnYselect" *ngIf="!cargando" id="selectEnviar"
+            [disabled]="errorSinSucursal">
+            <ion-select-option *ngFor=" let suc of sucursales"
+              [value]="suc.sucursal">{{suc.nombre}}-{{suc.domicilio}}</ion-select-option>
+          </ion-select>
+          <ion-label *ngIf="errorSeleccionSucursal" class="error">
+            Para enviar el/los producto/s deberá seleccionar una sucursal.
+          </ion-label>
+          <ion-label *ngIf="errorMismoNegocio" class="error">
+            No se puede realizar un envío a la misma tienda.
+          </ion-label>
+          <ion-button (click)="enviar()" class="btnYselect" *ngIf="!cargando" id="btnEnviar"
+            [disabled]="errorSinSucursal">
+            <ion-icon src="../../../assets/icon/truck-fast-solid.svg"></ion-icon>
+            <ion-label style="margin-left: 5px;">
+              Enviar
+            </ion-label>
+          </ion-button>
+          <ion-label *ngIf="errorSinSucursal" class="error">
+            Usted no tiene sucursales, deberá agregar una primero.
+          </ion-label>
+        </div>
+
+
+        <div class="custom-spinner" *ngIf="cargando">
+          <ion-spinner></ion-spinner>
+          <div class="spinner-text">Cargando...</div>
+        </div>
+        <ion-list [inset]="false" lines="full" class="contenedorItem" *ngIf="!cargando">
+          <ion-item *ngFor="let prod of resultsTraslado">
+            <div class="contenedorDetalle">
+              <div>
+                <ion-label>
+                  {{prod.description||prod.getDescription() | titlecase}}
+                </ion-label>
+                <ion-label>
+                  Detalle: {{prod.size}}
+                </ion-label>
+              </div>
+              <div class="modificarCantidad">
+                <ion-button (click)="aumentarValor(prod.id)" [disabled]="errorSinSucursal">+</ion-button>
+                <ion-input class="inputCantidad" value="{{prod.quantity}}" type="number" id="cant{{prod.id}}"
+                  disabled="true"></ion-input>
+                <ion-button (click)="disminuirValor(prod.id)" [disabled]="errorSinSucursal">-</ion-button>
+              </div>
+            </div>
+
+          </ion-item>
+        </ion-list>
+
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+<app-footer></app-footer>

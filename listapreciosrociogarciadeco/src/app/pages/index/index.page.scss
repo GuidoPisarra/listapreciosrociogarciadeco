@@ -1,0 +1,164 @@
+ion-radio {
+  width: 30px;
+  height: 30px;
+}
+
+ion-radio::part(container) {
+  border-radius: 8px;
+  border: 2px solid #ddd;
+}
+
+ion-radio::part(mark) {
+  background: none;
+  transition: none;
+  transform: none;
+  border-radius: 0;
+}
+
+ion-fab-button{
+  --box-shadow: 4px 10px 20px -6px black;
+}
+
+ion-searchbar{
+  --border-radius: 25px;
+  max-width: 95%;
+  margin-left: 10px;
+  margin-top: 15px;
+}
+
+.cantidad-label-input{
+  display: inline-flex;
+  align-items: center;
+}
+
+.success-content{
+  display: flex;
+  justify-content: center
+}
+
+.icon-success {
+  font-size: 72px;
+  color: green;
+  text-align: center;
+  margin-top: 40px;
+  justify-self: center;
+}
+
+.success-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 24px;
+}
+
+.success-submessage {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+  color: grey;
+}
+
+.cantidad-label-input{
+  display: inline-flex;
+  align-items: center;
+}
+
+.contenedor-botones {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
+
+.boton-circle {
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  background-color: var(--ion-color-primary);
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 2px 0px rgb(0 0 0 / 14%),
+  0 3px 1px -2px rgb(0 0 0 / 12%),
+  0 1px 5px 0 rgb(0 0 0 / 20%);
+}
+
+.icono {
+    filter: invert(100%);
+}
+
+ion-icon {
+    font-size: 25px;
+}
+
+.success-content{
+  display: flex;
+  justify-content: center;
+}
+
+.icon-success {
+  font-size: 72px;
+  color: green;
+  text-align: center;
+  margin-top: 40px;
+  justify-self: center;
+}
+
+.success-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 24px;
+}
+
+.success-submessage {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+  color: grey;
+}
+
+.contenedorDetalle{
+  display: flex;
+  flex-direction: column;
+  max-width: 62%;
+  min-width: 62%;
+  ;
+
+}
+.contenedorItem{
+  display: flex;
+  flex-direction: column;
+  justify-content:end;
+}
+.contenedorBotones{
+  display: flex;
+  flex-direction: row;
+}
+
+#delete, #edit{
+  display: flex;
+}
+
+.recuadro-menu{
+  width: 95%;
+  min-height: 5rem;
+  min-width: 95%;
+  border: 2px solid var(--ion-color-secondary);
+  border-radius: 5px;
+  display: flex;
+  margin-left: 2%;
+  margin-top: 5%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  box-shadow: 2px 2px 2px 0px rgb(0 0 0 / 14%),
+      0 3px 1px -2px rgb(0 0 0 / 12%),
+      0 1px 5px 0 rgb(0 0 0 / 20%);
+  padding: 3%;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+}

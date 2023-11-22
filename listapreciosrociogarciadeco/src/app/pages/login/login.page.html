@@ -1,0 +1,46 @@
+<ion-header class="header">
+  <ion-toolbar>
+    <ion-title>VentasXpress</ion-title>
+  </ion-toolbar>
+</ion-header>
+<div class="custom-spinner" *ngIf="cargando">
+  <ion-spinner></ion-spinner>
+  <div class="spinner-text">Cargando...</div>
+</div>
+<ion-content class="content" *ngIf="!cargando">
+  <!--  <ion-button class="crear-cuenta" (click)="crearCuenta()">Crear cuenta</ion-button> -->
+  <ion-grid>
+    <ion-row class="content">
+      <ion-col size="12" size-sm="12" size-md="4" size-lg="4" size-xl="4">
+        <div class="form-login">
+          <div class="group-label-input titulo">
+            <h2>Login</h2>
+          </div>
+          <div class="group-label-input">
+            <ion-label>E-mail</ion-label>
+            <ion-input id="email" (ionFocus)="limpiarMensajes()"></ion-input>
+          </div>
+          <div class="group-label-input">
+            <ion-label>Contraseña</ion-label>
+            <ion-input type="password" id="password_input" [(ngModel)]="password" autocomplete="off"
+              (ionFocus)="limpiarMensajes()">
+              <ion-button slot="end" class="eye" fill="clear" (click)="cambiar_icono()">
+                <img class='icono' src="assets/icon/eye-slash-solid.svg"
+                  style="width:15px!important;height:15px!important;margin:5px;" id="eye_icon" />
+              </ion-button>
+            </ion-input>
+
+          </div>
+          <div class="form-botones">
+            <ion-button (click)="ingresar()">Ingresar</ion-button>
+          </div>
+          <div class="group-label-input" *ngIf="error">
+            <ion-label style="color: red;">Usuario o contraseña incorrectas</ion-label>
+          </div>
+        </div>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>Versión: {{version}}</ion-footer>

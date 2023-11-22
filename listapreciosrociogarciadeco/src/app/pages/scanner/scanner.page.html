@@ -1,0 +1,103 @@
+<app-header titulo="Scanner" verBackButton="true" verMenu="true" (click)="vaciar()"></app-header>
+
+<ion-content [fullscreen]="true" id="content">
+  <div class="success-content" *ngIf="ventaCorrecta===true">
+    <ion-col>
+      <ion-row style="display:flex; justify-content: center;">
+        <ion-icon style="height: 40px; width: 40px;" src="../../../assets/icon/circle-check-regular.svg"></ion-icon>
+      </ion-row>
+      <ion-row style="display:flex; justify-content: center;">
+        <h1 class="success-message">Operación exitosa</h1>
+      </ion-row>
+      <ion-row style="display:flex; justify-content: center;">
+        <p class="success-submessage">Se ha guardado la venta con éxito.</p>
+      </ion-row>
+    </ion-col>
+  </div>
+
+  <body *ngIf="scanActive===true">
+
+    <div
+      style="position: absolute; left: 0px; top: -2px; height: 1px; overflow: hidden; visibility: hidden; width: 1px;"
+      class="scanner-ui">
+      <span
+        style="position: absolute; font-size: 300px; width: 50%; height: 50%; margin: 0px; padding: 0px; font-family: Roboto, Arial, sans-serif;">BESbswy</span>
+    </div>
+    <div id="result">
+      {{result}}
+    </div>
+  </body>
+
+  <body *ngIf="scanActive===true" class="codeBarScanner">
+
+    <div
+      style="position: absolute; left: 0px; top: -2px; height: 1px; overflow: hidden; visibility: hidden; width: 1px;"
+      class="scanner-ui">
+      <span
+        style="position: absolute; font-size: 300px; width: 50%; height: 50%; margin: 0px; padding: 0px; font-family: Roboto, Arial, sans-serif;">BESbswy</span>
+    </div>
+    <div id="result">
+      {{result}}
+    </div>
+  </body>
+
+
+  <div *ngIf="scanActive===false && ventaCorrecta === false" class="resultado">
+    <div class="resultado">
+      <ion-item class="itemVenta" *ngFor="let producto of carrito; let i = index">
+
+        <ion-label class="ionLabelProducto">
+          <h2>
+            <strong>
+              {{producto.description}}
+            </strong>
+          </h2>
+          <h3>
+            <strong>
+              Precio:
+            </strong>
+            {{producto.salePrice}}
+          </h3>
+          <ion-label>
+            <strong style="margin-left: -2px;">
+              Talle:
+            </strong>
+            {{producto.size}}
+          </ion-label>
+          <div class="cantidad-label-input">
+            <ion-label>Cantidad: </ion-label>
+            <ion-input type="number" min="1" class="cantProd" id="{{producto.id}}" name="{{producto.id}}"
+              value="{{producto.quantity}}" (change)="modificarCantidad(producto.id,i)"></ion-input>
+          </div>
+        </ion-label>
+        <ion-button class="btnQuitar" (click)="quitarDelCarrito(producto.id, i)">
+          Quitar
+        </ion-button>
+      </ion-item>
+    </div>
+
+
+    <ion-item *ngIf="scanActive===false">
+      <ion-label style="font-size: 20px; margin-left: 15px;">Total: </ion-label>
+      <ion-label style="font-size: 20px;">{{total | currency}} </ion-label>
+    </ion-item>
+    <div class="contenedor-botones" *ngIf="ventaCorrecta===false">
+      <div style="color: whitesmoke;">
+        <button class="boton-circle" (click)="agregarAlCarritoVentas()">
+          <img class='icono' src="../../../assets/icon/cart-plus-solid.svg"
+            style="width:30px!important;height:30px!important" />
+        </button>
+        Agregar
+      </div>
+      <div style="color: whitesmoke;">
+        <button class="boton-circle" (click)="finalizarVenta()">
+          <img class='icono' src="../../../assets/icon/sack-dollar-solid.svg"
+            style="width:30px!important;height:30px!important" />
+        </button>
+        Vender
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

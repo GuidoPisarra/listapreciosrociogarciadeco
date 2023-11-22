@@ -1,0 +1,15 @@
+.stockBajo{
+  --background: var(--ion-color-warning-tint);
+}
+
+.sinStock{
+  --background: var(--ion-color-danger-tint);
+}
+
+.checkbox{
+  height: 40px;
+  width: 40px;
+  margin-left: 10px;
+  --border-radius: 6px;
+}
+

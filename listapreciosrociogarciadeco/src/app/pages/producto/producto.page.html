@@ -1,0 +1,115 @@
+<app-header titulo="Agregar producto" verBackButton="true" verMenu="true"></app-header>
+
+<ion-content [fullscreen]="true" id="content">
+  <ion-grid>
+    <ion-row class="content">
+      <ion-col size="12" size-sm="12" size-md="3" size-lg="3" size-xl="3">
+        <div class="success-content" *ngIf="ventaCorrecta===true">
+          <ion-col>
+            <ion-row style="display:flex; justify-content: center;">
+              <ion-icon style="height: 40px; width: 40px;"
+                src="../../../assets/icon/circle-check-regular.svg"></ion-icon>
+            </ion-row>
+            <ion-row style="display:flex; justify-content: center;">
+              <h1 class="success-message">Operación exitosa</h1>
+            </ion-row>
+            <ion-row style="display:flex; justify-content: center;">
+              <p class="success-submessage">Se ha guardado el producto con éxito.</p>
+            </ion-row>
+          </ion-col>
+        </div>
+
+        <body *ngIf="scanActiveProd===true">
+          <div
+            style="position: absolute; left: 0px; top: -2px; height: 1px; overflow: hidden; visibility: hidden; width: 1px;"
+            class="scanner-ui">
+            <span
+              style="position: absolute; font-size: 300px; width: 50%; height: 50%; margin: 0px; padding: 0px; font-family: Roboto, Arial, sans-serif;">BESbswy</span>
+          </div>
+        </body>
+
+        <body *ngIf="scanActiveProd===true" class="codeBarScanner">
+
+          <div
+            style="position: absolute; left: 0px; top: -2px; height: 1px; overflow: hidden; visibility: hidden; width: 1px;"
+            class="scanner-ui">
+            <span
+              style="position: absolute; font-size: 300px; width: 50%; height: 50%; margin: 0px; padding: 0px; font-family: Roboto, Arial, sans-serif;">BESbswy</span>
+          </div>
+        </body>
+
+        <div *ngIf="ventaCorrecta === false" class="resultado">
+          <div id="addProduct">
+            <ion-list>
+              <ion-item>
+                <ion-label class="tituloLabel" position="stacked">Nombre</ion-label>
+                <ion-input placeholder="Ingrese el nombre" [(ngModel)]="nombre"></ion-input>
+              </ion-item>
+              <ion-label class="error" id="errorNombre" hidden="true">Este campo no puede estar vacío</ion-label>
+              <ion-item>
+                <ion-label class="tituloLabel" position="stacked">Precio costo</ion-label>
+                <ion-input type="number" min="0" placeholder="Ingrese el precio" [(ngModel)]="precioCosto"></ion-input>
+              </ion-item>
+              <ion-label class="error" id="errorPrecioCosto" hidden>Este campo no puede estar vacío</ion-label>
+              <ion-item>
+                <ion-label class="tituloLabel" position="stacked">Precio venta</ion-label>
+                <ion-input type="number" min="0" placeholder="Ingrese el precio" [(ngModel)]="precioVenta"></ion-input>
+              </ion-item>
+              <ion-label class="error" id="errorPrecioVenta" hidden>Este campo no puede estar vacío</ion-label>
+              <ion-item>
+                <ion-label class="tituloLabel" position="stacked">Cantidad</ion-label>
+                <ion-input type="number" min="0" placeholder="Ingrese la cantidad" [(ngModel)]="cantidad"></ion-input>
+              </ion-item>
+              <ion-label class="error" id="errorCantidad" hidden>Este campo no puede estar vacío</ion-label>
+              <ion-item>
+                <ion-label class="tituloLabel" position="stacked">Detalle</ion-label>
+                <ion-input placeholder="Ingrese el detalle" [(ngModel)]="talle"></ion-input>
+              </ion-item>
+              <ion-label class="error" id="errorTalle" hidden>Este campo no puede estar vacío</ion-label>
+              <ion-item>
+                <ion-label class="tituloLabel" position="stacked">Codigo</ion-label>
+                <ion-input placeholder="Ingrese el codigo o scannee el mismo" [(ngModel)]="codigo"></ion-input>
+              </ion-item>
+              <ion-label class="error" id="errorCodigo" hidden>Este campo no puede estar vacío</ion-label>
+            </ion-list>
+
+
+            <div class="contenedor-botones" *ngIf="ventaCorrecta===false">
+              <div>
+                <button class="boton-circle" (click)="saveProduct()">
+                  <img class='icono' src="../../../assets/icon/floppy-disk-regular.svg"
+                    style="width:30px!important;height:30px!important" />
+                </button>
+                <p style="color: var(--ion-color-secondary-shade)">Guardar</p>
+              </div>
+              <div>
+                <button class="boton-circle" (click)="scanCodeProduct()">
+                  <img class='icono' src="../../../assets/icon/barcode-solid.svg"
+                    style="width:30px!important;height:30px!important" />
+                </button>
+                <p style="margin-left: -20px; color: var(--ion-color-secondary-shade)">Scanear código </p>
+              </div>
+            </div>
+
+
+            <div id="productAdded">
+              <div class="center-div" *ngIf="valor!==''">
+                <ion-icon class="iconDone" name="checkmark-done-circle-outline"></ion-icon>
+                <ion-label class="addDoneText">Producto agregado correctamente</ion-label>
+                <ngx-qrcode class="itemQR" [elementType]="tipoElemento" [value]="valor"> </ngx-qrcode>
+                <ion-item class="itemQr">
+                  <ion-label>Descripcion: {{nombre}}</ion-label>
+                </ion-item>
+                <ion-item class="itemQr">
+                  <ion-label>Detalle: {{talle}}</ion-label>
+                </ion-item>
+                <ion-button class="itemQR" (click)="addOther()">Agregar otro</ion-button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

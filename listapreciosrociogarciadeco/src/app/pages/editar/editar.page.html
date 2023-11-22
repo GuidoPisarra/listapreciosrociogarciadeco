@@ -1,0 +1,56 @@
+<app-header titulo="Editar" verBackButton="true" verMenu="true"></app-header>
+<ion-content>
+  <div class="contenedor-item">
+
+    <div class="success-content" *ngIf="editarCorrecto===true">
+      <ion-col>
+        <ion-row style="display:flex; justify-content: center;">
+          <ion-icon style="height: 40px; width: 40px;" src="../../../assets/icon/circle-check-regular.svg"></ion-icon>
+        </ion-row>
+        <ion-row style="display:flex; justify-content: center;">
+          <h1 class="success-message">Operación exitosa</h1>
+        </ion-row>
+        <ion-row style="display:flex; justify-content: center;">
+          <p class="success-submessage">Se editó el producto con éxito.</p>
+        </ion-row>
+      </ion-col>
+    </div>
+    <ion-list *ngIf="editarCorrecto===false">
+      <ion-item>
+        <ion-label position="stacked">Nombre</ion-label>
+        <ion-input placeholder="Ingrese el nombre" [(ngModel)]="nombre" disabled></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Precio costo</ion-label>
+        <ion-input type="number" min="0" placeholder="Ingrese el precio de costo" [(ngModel)]="precioCosto"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Precio venta</ion-label>
+        <ion-input type="number" min="0" placeholder="Ingrese el precio de venta" [(ngModel)]="precioVenta"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Cantidad</ion-label>
+        <ion-input type="number" min="0" [(ngModel)]="cantidad"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Descripcion</ion-label>
+        <ion-input [(ngModel)]="talle" disabled></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Ubicación</ion-label>
+        <ion-input [(ngModel)]="ubicacion" disabled></ion-input>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div class="contenedor-botones" *ngIf="editarCorrecto===false">
+    <div>
+      <button id="guardar" class="boton-circle" (click)="saveProduct()">
+        <img class='icono' src="../../../assets/icon/floppy-disk-regular.svg"
+          style="width:30px!important;height:30px!important;" />
+      </button>
+      <ion-label style="margin-left: -3px;">
+        Guardar
+      </ion-label>
+    </div>
+  </div>
+</ion-content>

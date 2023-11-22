@@ -1,0 +1,84 @@
+.contenedor-item{
+  margin: 4%;
+}
+.btn-busqueda{
+  color:var(--ion-color-secondary-contrast);
+  width: 100%;
+  padding: 1%;
+}
+.seccion-cambio{
+  margin-top: 5%;
+  border: 2px solid var(--ion-color-secondary-shade);
+  border-radius: 8px;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.debito{
+  color:red;
+}
+.credito{
+  color: green;
+}
+
+body{
+
+  height: 30%;
+  width: 50%;
+  border: 2px solid var(--ion-color-success-tint);
+  border-radius: 20px;
+  margin-left: 24%;
+  margin-top: 30%;
+
+}
+
+.codeBarScanner {
+  height: 18%;
+  width: 80%;
+  border: 2px solid var(--ion-color-success-tint);
+  border-radius: 20px;
+  margin-left: 9%;
+  margin-top: 92%;
+}
+
+
+
+ion-content,
+.fondoScanner {
+  --background: var(--ion-background-color, transparent);
+}
+
+.fondoResultado {
+  --background: var(--ion-color-primary-shade, --ion-color-primary-shade);
+}
+
+.success-content {
+  display: flex;
+  justify-content: center;
+  color: whitesmoke;
+
+}
+
+.icon-success {
+  font-size: 72px;
+  color: green;
+  text-align: center;
+  margin-top: 40px;
+  justify-self: center;
+}
+
+.success-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 24px;
+    color: whitesmoke;
+}
+
+.success-submessage {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+  color: grey;
+    color: whitesmoke;
+}

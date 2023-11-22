@@ -1,0 +1,38 @@
+<app-header titulo="Stock" verBackButton="true" verMenu="true"></app-header>
+
+<ion-content>
+  <ion-searchbar [debounce]="300" (ionChange)="handleChange($event)" placeholder="Buscar"></ion-searchbar>
+  <ion-button (click)="printContent()" style="margin-top: 10px;">
+    <ion-icon src="../../../assets/icon/print-solid.svg"></ion-icon>
+    <ion-label style="margin-left: 5px;">
+      Imprimir
+    </ion-label>
+  </ion-button>
+  <ion-button (click)="trasladar()" style="margin-top: 10px;" *ngIf="tieneSucursal">
+    <ion-icon src="../../../assets/icon/truck-fast-solid.svg"></ion-icon>
+    <ion-label style="margin-left: 5px;">
+      Trasladar
+    </ion-label>
+  </ion-button>
+  <div class="custom-spinner" *ngIf="cargando">
+    <ion-spinner></ion-spinner>
+    <div class="spinner-text">Cargando...</div>
+  </div>
+  <ion-list [inset]="true" lines="full">
+    <ion-item *ngFor="let prod of results" [ngClass]="{'sinStock': prod.quantity===0, 'stockBajo': prod.quantity===1}"
+      style="margin-bottom: 5px;">
+      <div style="width: 70%; max-width: 70%;">
+        <ion-label>{{prod.description||prod.getDescription() | titlecase}}</ion-label>
+        <ion-label>Detalle: {{prod.size}}</ion-label>
+        <ion-label>Stock: {{prod.quantity}}</ion-label>
+        <ion-label>Ubicación: {{prod.nombreSucursal}}</ion-label>
+      </div>
+      <ion-button id="edit" (click)="editProduct(prod.id)">
+        <ion-icon class="edit" slot="icon-only" name="create-outline"></ion-icon>
+      </ion-button>
+      <ion-checkbox class="checkbox" id="{{prod.id}}" *ngIf="prod.quantity>0 && tieneSucursal"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+<app-footer></app-footer>

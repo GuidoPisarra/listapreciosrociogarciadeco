@@ -1,0 +1,16 @@
+ion-toolbar{
+  --background: var(--ion-color-primary);
+  color: var(--ion-color-secondary-shade);
+  z-index: 499 !important;
+}
+ion-button{
+  --color: var(--ion-color-secondary-shade) !important;
+  font-size: 20px;
+  --background: transparent;
+  --box-shadow: none !important;
+
+}
+main-content{
+ height: 50% !important;
+
+}

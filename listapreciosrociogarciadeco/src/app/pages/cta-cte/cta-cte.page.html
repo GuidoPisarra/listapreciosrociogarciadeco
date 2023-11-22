@@ -1,0 +1,98 @@
+<app-header titulo="Cuenta corriente" verBackButton="true" verMenu="true"></app-header>
+
+<ion-content>
+  <div class="success-content" *ngIf="ventaCorrecta===true && !cargando">
+    <ion-col>
+      <ion-row style="display:flex; justify-content: center;">
+        <ion-icon style="height: 40px; width: 40px;" src="../../../assets/icon/circle-check-regular.svg"></ion-icon>
+      </ion-row>
+      <ion-row style="display:flex; justify-content: center;">
+        <h1 class="success-message">Operación exitosa</h1>
+      </ion-row>
+      <ion-row style="display:flex; justify-content: center;">
+        <p class="success-submessage">Se ha guardado la venta con éxito.</p>
+      </ion-row>
+    </ion-col>
+  </div>
+  <div class="custom-spinner" *ngIf="cargando">
+    <ion-spinner></ion-spinner>
+    <div class="spinner-text">Cargando...</div>
+  </div>
+  <div *ngIf="!cargando && ventaCorrecta===false">
+    <ion-button (click)="agregarCliente()">Agregar cliente</ion-button>
+    <div class="contenedorItem" *ngIf="clienteNuevo">
+      <ion-label>Apellido</ion-label>
+      <ion-input [(ngModel)]="apellido"></ion-input>
+      <ion-label>Nombre</ion-label>
+      <ion-input [(ngModel)]="nombre"></ion-input>
+      <ion-label>DNI</ion-label>
+      <ion-input type="number" [(ngModel)]="dni"></ion-input>
+      <ion-label>Telefono</ion-label>
+      <ion-input type="number" [(ngModel)]="telefono"></ion-input>
+      <ion-label *ngIf="errorCamposCliente" style="color: red;">Los campos deben estar completos.</ion-label>
+      <ion-label *ngIf="errorClienteExistente" style="color: red;">Cliente existente</ion-label>
+      <div class="div-botones">
+        <ion-button (click)="guardarCliente()">Guardar</ion-button>
+        <ion-button (click)="cancelarGuardar()">Cancelar</ion-button>
+      </div>
+    </div>
+
+    <ion-searchbar [debounce]="300" (ionChange)="handleChange($event)" placeholder="Buscar"></ion-searchbar>
+    <ion-row>
+      <ion-item lines="null">
+        Clientes
+      </ion-item>
+    </ion-row>
+    <ion-list [inset]="false" lines="full" class="contenedorItem" *ngIf="!cargando">
+      <ion-item *ngFor="let cliente of clientesResult.slice(0, cantidadInicialAMostrar); let index = index"
+        (click)="verCliente(cliente.id)">
+        <div class="contenedorDetalle" (click)="verCliente(cliente.id)">
+          <ion-label>
+            {{cliente.apellido | titlecase}} {{cliente.nombre | titlecase}}
+          </ion-label>
+          <ion-label>
+            DNI: {{cliente.dni}}
+          </ion-label>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="clienteSeleccionado!=='' && !cargando && ventaCorrecta===false">
+    <ion-item *ngIf="clienteSeleccionado!==''">
+      <div class="contenedorDetalle">
+        <ion-label>
+          {{clienteSeleccionado.apellido | titlecase}} {{clienteSeleccionado.nombre | titlecase}}
+        </ion-label>
+        <ion-label>
+          DNI: {{clienteSeleccionado.dni}}
+        </ion-label>
+      </div>
+    </ion-item>
+  </div>
+
+  <ion-list [inset]="false" lines="full" class="contenedorItem"
+    *ngIf="!cargando && clienteSeleccionado!=='' && ventaCorrecta===false">
+    <ion-item *ngFor="let prod of carrito">
+      <div class="contenedorDetalle">
+        <ion-label>
+          {{prod.description | titlecase}}
+        </ion-label>
+        <ion-label>
+          Precio unitario: {{prod.price}}
+        </ion-label>
+        <ion-label>
+          Cantidad {{prod.quantity}}
+        </ion-label>
+        <ion-label>
+          Sub-total {{prod.subtotal}}
+        </ion-label>
+      </div>
+    </ion-item>
+    <ion-item>
+      <h2>Total: {{totalVenta| currency}}</h2>
+    </ion-item>
+  </ion-list>
+  <ion-button *ngIf="!cargando && clienteSeleccionado!=='' && ventaCorrecta===false"
+    (click)="vender()">Vender</ion-button>
+</ion-content>
+<app-footer></app-footer>
